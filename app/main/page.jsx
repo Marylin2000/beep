@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import ProductCard from "../pages/components/productCard";
 import { categories, data } from "../pages/components/datas";
 import AllProducts from "../assets/products/all_products";
 import Footer from "../pages/components/Footer";
 
 function MainPage() {
   return (
-    <main>
+    <main className="w-[100vw] h-[100vh">
       <section className="hidden text-gray-400 text-xs sm:flex  justify-evenly overflow-x-scroll">
         {categories.map((item) => (
           <div

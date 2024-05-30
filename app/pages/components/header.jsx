@@ -5,7 +5,7 @@ import logo from "@/app/assets/images/logo.png";
 import Link from "next/link";
 import { HiMenuAlt3, HiOutlineXCircle } from "react-icons/hi";
 import Navbar from "./Navbar";
-
+import { useRouter } from "next/navigation";
 function Header() {
   useEffect(() => {
     const apiUrl = "https://dummyjson.com/products/categories";
@@ -39,6 +39,7 @@ function Header() {
   }, []);
   const [toggleSideBar, setToggleSidebar] = useState(false);
   const [categories, setCategories] = useState([]);
+  const router = useRouter();
   return (
     <div className="px-6">
       <header className="px-4 py-1 flex w-full h-20 z-10  top-0 justify-between items-center">
@@ -68,11 +69,7 @@ function Header() {
                   <Link
                     key={index}
                     className="text-slate-500 px-2 py-1 my-3 w-[90%] "
-                    // href={`/pages/${category}`}
-                    href={{
-                      pathname: `/page/${category}`,
-                      query: { slug: "1" },
-                    }}
+                    href={`/pages/1`}
                   >
                     {console.log(typeof `/pages/${category}`)}
                     <p className="text-xs hover:bg-green-400 px-2 py-1">
