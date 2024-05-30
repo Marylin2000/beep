@@ -29,19 +29,6 @@ function Search() {
            
           </section>
           {/* {CARTEGORIES} */}
-          <section>
-            <div className=" sticky top-20 z-20 flex mb-1  w-screen overflow-x-scroll scroll-m-0">
-              {categories.map((option) => (
-                <button
-                  key={option.name}
-                  className=" h-[4em] flex transition-all ease-in-out duration-700 hover:text-white hover:bg-orange-400 w-[20%] mx-1 flex-col items-center bg-slate-200 py-1 justify-center px-1 rounded-lg cursor shrink-0"
-                >
-                  <span className="text-gray-400 text-2xl hover:text-white ">{option.icon}</span>{" "}
-                  <p className="text-xs">{option.name}</p>
-                </button>
-              ))}
-            </div>
-          </section>
         </header>
         {/* SEARCH RESULTS */}
         <div>
@@ -72,13 +59,7 @@ function Search() {
             <p className="text-lg text-red-400 font-semibold ml-2">
               New Products
             </p>
-            <div className="font-poppins justify-center p-0 flex flex-wrap">
-              {data.map((product) => (
-                <div key={Math.random()}>
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
+            
           </section>
         </div>
       </div>
