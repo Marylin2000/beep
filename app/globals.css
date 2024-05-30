@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+ padding: 0;
+ margin:0;
+ border: 0;
+ box-shadow: borderbox;
+ scrollbar-width: 1px;
+ font-family: poppins;
+}
+@font-face {
+  font-family: poppins;
+  src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+
+form input{
+  outline:  green;
+  padding-left: 5px;
+  border-radius: 8px;
+  border: solid 1px;
+  height: 25px;
+  margin: 3px;
+  border-color:slategrey ;
+}
+form input:focus{
+  outline: none;
+}
