@@ -6,9 +6,10 @@ import Link from "next/link";
 import { HiMenuAlt3, HiOutlineXCircle } from "react-icons/hi";
 import Navbar from "./Navbar";
 import { useRouter } from "next/navigation";
+import SideBar from "./sidebar";
 function Header() {
   useEffect(() => {
-    const apiUrl = "https://dummyjson.com/products/categories";
+    const apiUrl = "https://dummyjson.com/products/category-list";
     // You can include headers, request method, and other options as needed
     const requestOptions = {
       method: "GET", // or 'POST', 'PUT', 'DELETE', etc.
@@ -63,22 +64,7 @@ function Header() {
               onClick={() => setToggleSidebar(false)}
               size={30}
             />
-            {/* <div className="overflow-y-scroll h-full pl-2">
-              {categories.map((category,index) => {
-                return (
-                  <Link
-                    key={index}
-                    className="text-slate-500 px-2 py-1 my-3 w-[90%] "
-                    href={`/pages/1`}
-                  >
-                    {console.log(typeof `/pages/${category}`)}
-                    <p className="text-xs hover:bg-green-400 px-2 py-1">
-                      {category}
-                    </p>
-                  </Link>
-                );
-              })}
-            </div> */}
+            <SideBar categories={categories} />
           </div>
         </section>
         <Link href={"/"}>
@@ -91,3 +77,5 @@ function Header() {
 }
 
 export default Header;
+
+

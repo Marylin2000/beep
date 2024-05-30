@@ -4,6 +4,7 @@ import ProductCard from "../components/productCard";
 import Topmain from "@/app/layouts/Topmain";
 import BottomMain from "@/app/layouts/BottomMain";
 import Loader from "../components/Loader";
+import Main from "@/app/layouts/Main";
 
 function Page() {
   const [category, setCategoty] = useState();
@@ -41,12 +42,10 @@ function Page() {
         console.error("Fetch error:", error);
       });
   }),
-    [category];
+    [];
 
   return (
-    <main>
-      <Topmain>
-        <BottomMain>
+    <Main>
           <div className="flex flex-wrap shrink">
             {products.map((product) => {
               return (
@@ -54,7 +53,8 @@ function Page() {
                   <ProductCard product={product} />
                 </div>
               );
-            })}
+            })}791
+
           <div >
             {isLoading && (
               <div>
@@ -64,9 +64,7 @@ function Page() {
             
           </div>
           </div>
-        </BottomMain>
-      </Topmain>
-    </main>
+    </Main>
   );
 }
 
