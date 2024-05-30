@@ -1,29 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-import BottomMain from "../layouts/BottomMain";
 import logo from "@/app/assets/images/logo.png";
 import Image from "next/image";
 import { FaChevronRight, FaShoppingBag, FaUser } from "react-icons/fa";
-import Signup from "./Signup";
-import Login from "./login";
+import Signup from "../auth/Signup";
+import Login from "../auth/login";
 import { HiArrowLeft } from "react-icons/hi";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Main from "../layouts/Main";
 
-function User() {
+function Profile() {
   const [signup, setSignup] = useState(false);
   const [login, setLogin] = useState(false);
   const router = useRouter();
 
   return (
-    <BottomMain>
+    <Main>
       <div className="cursor-pointer absolute">
         <HiArrowLeft className="shadow-lg" onClick={() => router.back()} />
       </div>
 
       <div className="px-4 py-2 text-xs mb-24">
-        <header className="flex justify-center h-[8vh] py-2 sticky top-0">
-          <Image src={logo} alt="logo" className="w-[100px]" />
+        <header className="flex justify-center h-fit py-2 sticky top-0">
+          <Image src={logo} alt="logo" width={250} height={250}/>
         </header>
 
         {/* User Properties */}
@@ -79,8 +79,8 @@ function User() {
         {signup && <Signup setSignup={setSignup} />}
         {login && <Login setLogin={setLogin} />}
       </div>
-    </BottomMain>
+    </Main>
   );
 }
 
-export default User;
+export default Profile;

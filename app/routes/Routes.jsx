@@ -7,10 +7,7 @@ export const routerTrigger = [
     icon: <HiOutlineHome   className="text-orange-500"/>,
     Destination: "/",
   },
-  {
-    icon: <HiOutlineSearch  className="text-orange-500" />,
-    Destination: "/search",
-  },
+
 
   {
     icon: <HiOutlineHeart  className="text-orange-500" />,
@@ -18,6 +15,6 @@ export const routerTrigger = [
   },
   {
     icon: <HiOutlineUser   className="text-orange-500"/>,
-    Destination: "/user",
+    Destination: "/profile",
   },
 ];

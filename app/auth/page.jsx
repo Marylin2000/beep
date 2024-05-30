@@ -4,7 +4,9 @@ import ProductView from '../pages/components/productView'
 
 function page() {
   return (
-    <div><ProductView /></div>
+    <div>
+      hello
+    </div>
   )
 }
 

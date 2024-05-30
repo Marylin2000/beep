@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { FaSearch, FaMicrophone} from "react-icons/fa";
-import ProductCard from "../pages/components/productCard";
 import Main from "../layouts/Main";
 function Search() {
   const [find, setFind] = useState("");
