@@ -58,9 +58,9 @@ function ProductView() {
                 </div>
 
                 <section className="flex flex-wrap gap-3 justify-center mt-10">
-                  {product.images.map((image) => {
+                  {product.images.map((image,index) => {
                     return (
-                      <div>
+                      <div key={index}>
                         <Image
                           src={image}
                           alt="descriptive images"
