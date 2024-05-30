@@ -14,10 +14,10 @@ function ProductView() {
   return (
     <Topmain>
       <main>
-        {ProductContextValue.map((product) => {
+        {ProductContextValue.map((product,index) => {
           return (
             <div
-              key={Math.random()}
+              key={index}
               className="container font-poppins bg-gray-200 h-screen"
             >
               <section className="image flex-col px-5 py-4 flex justify-center ">
