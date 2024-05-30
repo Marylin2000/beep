@@ -42,7 +42,7 @@ function Page() {
         console.error("Fetch error:", error);
       });
   }),
-    [];
+    [category];
 
   return (
     <Main>
@@ -53,7 +53,7 @@ function Page() {
                   <ProductCard product={product} />
                 </div>
               );
-            })}791
+            })}
 
           <div >
             {isLoading && (
