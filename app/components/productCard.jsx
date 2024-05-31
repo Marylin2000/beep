@@ -13,7 +13,19 @@ function ProductCard({ product }) {
   const handleAddToCart = () => {
     addToCart(product);
     setAddedToCart(true)
-    toast(`Added ${product.title} to cart`);
+
+    toast.success(`Added ${product.title} to cart`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+
+      });
+      
   };
 
   return (
@@ -61,7 +73,8 @@ function ProductCard({ product }) {
           Order
         </Link>
       </section>
-      <ToastContainer />
+      <ToastContainer 
+      />
     </main>
   );
 }
