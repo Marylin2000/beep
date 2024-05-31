@@ -1,5 +1,5 @@
-import Loader from "@/app/pages/components/Loader";
-import ProductCard from "@/app/pages/components/productCard";
+import Loader from "@/app/components/Loader";
+import ProductCard from "@/app/components/productCard";
 import React from "react";
 import { useEffect, useState } from "react";
 

@@ -11,7 +11,7 @@ export const routerTrigger = [
 
   {
     icon: <HiOutlineHeart  className="text-orange-500" />,
-    Destination: "/favourite",
+    Destination: "/cart",
   },
   {
     icon: <HiOutlineUser   className="text-orange-500"/>,

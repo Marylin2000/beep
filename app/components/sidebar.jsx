@@ -12,7 +12,6 @@ function SideBar({categories}) {
             className="text-slate-500 px-2 py-1 my-3 w-[90%] "
             href={`/pages/${category}`}
           >
-            {console.log(typeof `/pages/${category}`)}
             <p className="text-xs hover:bg-green-400 px-2 py-1">
               {category}
             </p>

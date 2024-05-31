@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import ProductView from '../pages/components/productView'
+import ProductView from '../components/productView'
 
 function page() {
   return (

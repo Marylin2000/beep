@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from '../pages/components/header'
+import Header from '../components/header'
 import Link from 'next/link'
 import { routerTrigger } from '../routes/Routes'
 
 
 function Main({children}) {
   return (
-    <main className="h-[100vh] w-[100vw]]" >
+    <main className="h-[100vh] w-[100vw]" >
          <div className="bg-orange-300 z-20 sticky top-0 w-full">
             <Header />
           </div>

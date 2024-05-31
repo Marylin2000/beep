@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ProductCard from "../components/productCard";
+import ProductCard from "../../components/productCard";
 import Topmain from "@/app/layouts/Topmain";
 import BottomMain from "@/app/layouts/BottomMain";
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
 import Main from "@/app/layouts/Main";
 
 function Page() {
@@ -46,7 +46,7 @@ function Page() {
 
   return (
     <Main>
-          <div className="flex flex-wrap shrink">
+          <div className="flex flex-wrap shrink items-center">
             {products.map((product) => {
               return (
                 <div key={product.thumbnail}>

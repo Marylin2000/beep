@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { categories, data } from "../pages/components/datas";
+import { categories, data } from "../components/datas";
 import AllProducts from "../assets/products/all_products";
-import Footer from "../pages/components/Footer";
+import Footer from "../components/Footer";
 
 function MainPage() {
   return (

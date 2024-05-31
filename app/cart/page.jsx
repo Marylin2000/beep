@@ -1,49 +1,58 @@
+// app/components/Cart.js
 "use client"
-import Image from "next/image";
-import React from "react";
-import image from "@/app/assets/images/Daco_4884463.png";
-import { BsTrash } from "react-icons/bs";
-import Main from "../layouts/Main";
-import { cartProducts } from "../pages/components/datas";
-function page() {
-  return (
-    <Main>
-      <div className="">
-        {cartProducts.map((cart) => {
-          return (
-            <div key={Math.random()}>
-              <section className="ml-2 mt-2">
-                <input type="checkbox" />
-              </section>
-              <div className="flex justify-between px-4 py-2 items-center">
-                <div className="w-24 h-24 flex">
-                  <Image src={cart.image} alt="ProductImage" />
-                  <div>
-                    <p>{cart.name}</p>
-                    <p>{cart.price}</p>
-                  </div>
-                </div>
-                <div className="flex w-[30%] justify-around">
-                  <button className="bg-green-400 text-white p-2 rounded-md">
-                    Order
-                  </button>
-                  <button
-                    className="text-red-500 text-lg"
-                    onClick={() => {
-                      cartProducts.includes(cart) ? cartProducts.pop(cart) : "";
-                      console.log(cart)
-                    }}
-                  >
-                    <BsTrash />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </Main>
-  );
-}
+import { useContext } from 'react';
+import CartContext from '../context/CartContext';
+import { icons } from 'react-icons';
+import Image from 'next/image';
+import { FaTrash, FaTrashAlt } from 'react-icons/fa';
 
-export default page;
+const CartComponent = () => {
+  const context = useContext(CartContext);
+  console.log('Cart context:', context);
+
+  if (!context) {
+    return <div>Error: CartContext is not provided</div>;
+  }
+
+  const { cart, removeFromCart } = context;
+  console.log(cart)
+
+  return (
+    <div>
+      <div className = " flex items-center">
+
+      <h2 className = "font-bold flex">Cart</h2> <span className="text-xs mx-1"> ({cart.length})</span>
+      </div>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        cart.map((item,index) => (
+          <div key={index} className="my-5 px-4 py-2 border-b-2 border-solid">
+            <h3>{item.title}</h3>
+            <section className="flex items-center">
+
+            <Image src={item.images[0]} width={150} height={150} alt="cart image"/>
+            <div className="flex items-center gap-10">
+              <div>
+
+              <p className="text-xs mb-4">
+                {
+                  item.description
+                }
+              </p>
+              <p className="text-green-400" >
+                ${item.price}
+              </p>
+                </div>
+            <button onClick={() => removeFromCart(item.id)}><FaTrashAlt className="text-red-400" /></button>
+            </div>
+     
+            </section>
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
+
+export default CartComponent;
