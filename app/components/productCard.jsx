@@ -16,7 +16,6 @@ function ProductCard({ product }) {
 
     toast.success(`Added ${product.title} to cart`, {
       position: "top-right",
-      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

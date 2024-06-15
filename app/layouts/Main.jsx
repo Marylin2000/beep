@@ -6,8 +6,8 @@ import { routerTrigger } from '../routes/Routes'
 
 function Main({children}) {
   return (
-    <main className="h-[100vh] w-[100vw]" >
-         <div className="bg-orange-300 z-20 sticky top-0 w-full">
+    <main className="h-[100vh] w-[100vw] relative " >
+         <div className="bg-white sticky  top-0 w-full">
             <Header />
           </div>
           {children}
