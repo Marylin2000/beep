@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/productCard";
-import Topmain from "@/app/layouts/Topmain";
-import BottomMain from "@/app/layouts/BottomMain";
 import Loader from "../../components/Loader";
 import Main from "@/app/layouts/Main";
 

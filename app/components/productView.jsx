@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import { useState, useContext } from "react";
+import { useState,} from "react";
 import { FaArrowLeft, FaHeart, FaMinus, FaPlus } from "react-icons/fa";
-import Topmain from "@/app/layouts/Topmain";
 import { useRouter } from "next/navigation";
 import { ProductContextValue, cartProducts, wishlist } from "./datas";
+import Main from "../layouts/Main";
 
 function ProductView() {
   const [amount, setAmount] = useState(0);
@@ -12,7 +12,7 @@ function ProductView() {
 
   console.log(ProductContextValue);
   return (
-    <Topmain>
+    <Main>
       <main>
         {ProductContextValue.map((product,index) => {
           return (
@@ -114,7 +114,7 @@ function ProductView() {
           );
         })}
       </main>
-    </Topmain>
+    </Main>
   );
 }
 
