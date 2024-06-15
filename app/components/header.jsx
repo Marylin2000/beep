@@ -5,7 +5,6 @@ import logo from "@/app/assets/images/logo.png";
 import Link from "next/link";
 import { HiMenuAlt3, HiOutlineXCircle } from "react-icons/hi";
 import Navbar from "./Navbar";
-import { useRouter } from "next/navigation";
 import SideBar from "./sidebar";
 import { FaSearch } from "react-icons/fa";
 function Header() {
@@ -51,7 +50,7 @@ function Header() {
           size={20}
         />
         <div
-          className={`h-screen w-[45%] bg-slate-200 absolute top-0 left-0 translate-x-[-100%]${
+          className={`h-screen w-[45%] bg-slate-100 rounded-l-md absolute top-0 left-0 translate-x-[-100%]${
             toggleSideBar
               ? "transition ease-in-out duration-500 translate-x-0"
               : ""
@@ -69,7 +68,7 @@ function Header() {
   };
   const [toggleSideBar, setToggleSidebar] = useState(false);
   const [categories, setCategories] = useState([]);
-  const router = useRouter();
+
   return (
     <div className="pl-3  pr-10 flex items-center w-full  sticky top-0" >
       <header className="py-1 flex w-full h-20 z-10  items-center">

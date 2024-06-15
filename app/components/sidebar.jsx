@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
-
+import { FaShoppingBag } from 'react-icons/fa';
+import {} from 'react-icons/io'
 
 
 function SideBar({categories}) {
@@ -9,10 +10,12 @@ function SideBar({categories}) {
         return (
           <Link
             key={index}
-            className="text-slate-500 px-2 py-1 my-3 w-[90%] "
+            className="text-slate- flex items-center px-2 gap-2 py-1 my-3 w-[100%] "
             href={`/pages/${category}`}
+
           >
-            <p className="text-xs hover:bg-green-400 px-2 py-1">
+            <FaShoppingBag className="text-gray-500" />
+            <p className="text-xs w-fit rounded-md hover:text-white hover:bg-green-400">
               {category}
             </p>
           </Link>

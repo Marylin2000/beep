@@ -41,22 +41,13 @@ function ProductCard({ product }) {
 
       <div className="flex justify-between items-center w-full">
         <section>
+          <p className="w-full text-xs">{product.title}</p>
           <span className="text-green-600 flex items-center">
             <FaTag className="mx-1 text-slate-700" />
             <p className="text-sm">${product.price}</p>
           </span>
-          <p className="w-full text-xs">{product.title}</p>
         </section>
-        <button>
-          <FaHeart
-            className={`text-gray-400 text-xl ${
-              addedToCart ? "text-red-600" : ""
-            }`}
-            onClick={() => {
-              setAddedToCart((prev) => !prev);
-            }}
-          />
-        </button>
+      
       </div>
       <section className="w-[100%] flex justify-between">
         <button
