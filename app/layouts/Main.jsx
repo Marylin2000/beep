@@ -7,7 +7,7 @@ import { routerTrigger } from '../routes/Routes'
 function Main({children}) {
   return (
     <main className="h-[100vh] w-[100vw] relative overflow-y-scroll " >
-         <div className="bg-white sticky  top-0 w-full">
+         <div className="bg-white sticky  top-0">
             <Header />
           </div>
           {children}

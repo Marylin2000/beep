@@ -2,9 +2,8 @@
 "use client"
 import { useContext } from 'react';
 import CartContext from '../context/CartContext';
-import { icons } from 'react-icons';
 import Image from 'next/image';
-import { FaTrash, FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const CartComponent = () => {
   const context = useContext(CartContext);

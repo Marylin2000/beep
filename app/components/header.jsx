@@ -70,8 +70,8 @@ function Header() {
   const [categories, setCategories] = useState([]);
 
   return (
-    <div className="pl-3  pr-10 flex items-center w-full  sticky top-0" >
-      <header className="py-1 flex w-full h-20 z-10  items-center">
+    <div className="pl-3  pr-10 flex items-center  sticky top-0" >
+      <header className="py-1 flex  h-20 z-10  items-center">
         <SideNav />
 
         <Link href={"/"}>
