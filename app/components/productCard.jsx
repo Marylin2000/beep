@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useContext } from "react";
-import { FaHeart, FaTag } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaTag } from "react-icons/fa";
 import CartContext from "../context/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useRouter } from "next/navigation";
 function ProductCard({ product }) {
   const { addToCart } = useContext(CartContext);
 
@@ -22,9 +22,15 @@ function ProductCard({ product }) {
     });
   };
 
+const router = useRouter()
+
+  const handleImageClick = () => {
+    router.push(`/pages/products/${product.id}`);
+  };
+
   return (
-    <main className="overflow-hidden w-[40vw] flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
-      <Link href={`/products/${product.id}`}>
+    <main className="overflow-hidden w-[40vw]  flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
+      <div onClick={handleImageClick}>
         <Image
           src={product.thumbnail}
           width={150}
@@ -32,7 +38,7 @@ function ProductCard({ product }) {
           alt="product image"
           className="w-full"
         />
-      </Link>
+      </div>
 
       <div className="flex justify-between items-center w-full">
         <section>

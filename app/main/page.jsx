@@ -37,7 +37,7 @@ function AllProducts() {
   );
 
   return (
-    <main className="relative">
+    <main>
       {isLoading ? <Loader /> : <Products />}
     </main>
   );

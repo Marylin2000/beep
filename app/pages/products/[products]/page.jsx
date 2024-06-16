@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 import { FaArrowLeft, FaHeart, FaMinus, FaPlus } from "react-icons/fa";
 import Main from "@/app/layouts/Main";
 import { fetchProductById } from "@/app/utils/fetchById";
+import Loader from "@/app/components/Loader";
 
 function ProductView({params}) {
   const [product, setProduct] = useState(null);
   const [amount, setAmount] = useState(0);
+  
   const id = params.products
-
   useEffect(() => {
     if (id) {
       fetchProductById(id)
@@ -21,10 +22,10 @@ function ProductView({params}) {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
-  console.log(params.products);
+  console.log(params);
 
   return (
     <Main>
