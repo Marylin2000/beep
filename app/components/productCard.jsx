@@ -8,12 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function ProductCard({ product }) {
   const { addToCart } = useContext(CartContext);
-  const [addedToCart, setAddedToCart] = useState(false);
 
   const handleAddToCart = () => {
     addToCart(product);
-    setAddedToCart(true)
-
     toast.success(`Added ${product.title} to cart`, {
       position: "top-right",
       hideProgressBar: false,
@@ -22,20 +19,18 @@ function ProductCard({ product }) {
       draggable: true,
       progress: undefined,
       theme: "colored",
-
-      });
-      
+    });
   };
 
   return (
     <main className="overflow-hidden w-[40vw] flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
-      <Link href={"/productview"}>
+      <Link href={`/products/${product.id}`}>
         <Image
           src={product.thumbnail}
           width={150}
           height={100}
           alt="product image"
-          className="W-full"
+          className="w-full"
         />
       </Link>
 
@@ -47,8 +42,8 @@ function ProductCard({ product }) {
             <p className="text-sm">${product.price}</p>
           </span>
         </section>
-      
       </div>
+      
       <section className="w-[100%] flex justify-between">
         <button
           onClick={handleAddToCart}
@@ -58,13 +53,12 @@ function ProductCard({ product }) {
         </button>
         <Link
           className="text-xs bg-red-400 flex items-center px-2 py-1 rounded-full text-white"
-          href=""
+          href={`/order/${product.id}`}
         >
           Order
         </Link>
       </section>
-      <ToastContainer 
-      />
+      <ToastContainer />
     </main>
   );
 }

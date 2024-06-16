@@ -3,65 +3,44 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/productCard";
 import Loader from "../../components/Loader";
 import Main from "@/app/layouts/Main";
+import { fetchProductsByCategory } from "@/app/utils/fetchProductsByCategory";
 
 function Page() {
-  const [category, setCategoty] = useState();
+  const [category, setCategory] = useState();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const apiUrl = `https://dummyjson.com/products/category/${category}`;
-  // You can include headers, request method, and other options as needed
-  const requestOptions = {
-    method: "GET", // or 'POST', 'PUT', 'DELETE', etc.
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   useEffect(() => {
     const pathName = document.URL.split("/").pop();
-    setCategoty(pathName);
-    fetch(apiUrl, requestOptions)
-      .then((response) => {
-        // Check if the request was successful (status code 2xx)
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        // Parse the response JSON
-        return response.json();
-        setIsLoading(true);
-      })
-      .then((data) => {
-        // Do something with the data received from the API
-        setProducts(data.products);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Fetch error:", error);
-      });
-  }),
-    [category];
+    setCategory(pathName);
+
+    const getProducts = async () => {
+      setIsLoading(true);
+      const products = await fetchProductsByCategory(pathName);
+      setProducts(products);
+      setIsLoading(false);
+    };
+
+    getProducts();
+  }, [category]);
 
   return (
     <Main>
-          <div className="flex flex-wrap shrink items-center">
-            {products.map((product) => {
-              return (
-                <div key={product.thumbnail}>
-                  <ProductCard product={product} />
-                </div>
-              );
-            })}
+      <div className="flex flex-wrap shrink items-center">
+        {products.map((product) => (
+          <div key={product.thumbnail}>
+            <ProductCard product={product} />
+          </div>
+        ))}
 
-          <div >
-            {isLoading && (
-              <div>
-                <Loader />
-              </div>
-            )}
-            
-          </div>
-          </div>
+        <div>
+          {isLoading && (
+            <div>
+              <Loader />
+            </div>
+          )}
+        </div>
+      </div>
     </Main>
   );
 }
