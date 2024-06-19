@@ -50,7 +50,7 @@ export default function Register() {
       </div>
       <div className="my-20">
         <div className="flex items-center gap-2 bg-gray-300 rounded-md px-2 py-1 my-5">
-          <FaUserAlt size={25} color={"gray"} name="ios-person" />
+          <FaUserAlt size={25} color={"gray"} />
           <input
             className="flex-1 my-3 p-5"
             value={name}
@@ -59,7 +59,7 @@ export default function Register() {
           />
         </div>
         <div className="flex items-center gap-2 bg-gray-300 rounded-md px-2 py-1 my-5 w-72">
-          <FaEnvelope color={"gray"} name="email" size={24} />
+          <FaEnvelope color={"gray"} size={24} />
           <input
             className="flex-1 my-3"
             value={email}
@@ -68,7 +68,7 @@ export default function Register() {
           />
         </div>
         <div className="flex items-center gap-2 bg-gray-300 rounded-md px-2 py-1 w-72">
-          <FaLock size={30} color={"gray"} name="lock1" />
+          <FaLock size={30} color={"gray"} />
           <input
             type="password"
             className="flex-1 my-3"
@@ -95,7 +95,7 @@ export default function Register() {
           onClick={() => router.push("/login")}
           className="cursor-pointer text-red-400"
         >
-          Don't have an account? Login
+          {" have an account? Login"}
         </button>
       </div>
     </div>
