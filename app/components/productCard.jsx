@@ -1,32 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React,from "react";
 import { FaTag } from "react-icons/fa";
-import CartContext from "../context/CartContext";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
+import AddToCart from "./addToCart";
 function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext);
-
-  const handleAddToCart = () => {
-    addToCart(product);
-    toast.success(`Added ${product.title} to cart`, {
-      position: "top-right",
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-
+ 
 const router = useRouter()
 
   const handleImageClick = () => {
     router.push(`/pages/products/${product.id}`);
   };
+
+  console.log(product);
 
   return (
     <main className="overflow-hidden w-[40vw]  flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
@@ -51,20 +38,14 @@ const router = useRouter()
       </div>
       
       <section className="w-[100%] flex justify-between">
-        <button
-          onClick={handleAddToCart}
-          className="text-xs bg-green-400 flex items-center px-2 py-1 rounded-full text-white"
-        >
-          Add to Cart
-        </button>
         <Link
           className="text-xs bg-red-400 flex items-center px-2 py-1 rounded-full text-white"
           href={`/order/${product.id}`}
         >
           Order
         </Link>
+        <AddToCart product={product} />
       </section>
-      <ToastContainer />
     </main>
   );
 }

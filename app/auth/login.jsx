@@ -1,60 +1,95 @@
-"use client";
-import Image from "next/image";
-import React, { useState } from "react";
-import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
-import image from "@/app/assets/images/logo.png";
-import { HiX } from "react-icons/hi";
-function Login({ setLogin }) {
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { FaEnvelopeOpen, FaLock, FaThumbsUp } from "react-icons/fa";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        if (token) {
+          router.replace("/main");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  const handleLogin = async () => {
+    const user = { email, password };
+    try {
+      const response = await axios.post("http://192.168.43.167:8000/login", user);
+      console.log(response);
+      const token = response.data.token;
+      localStorage.setItem("authToken", token);
+      router.replace("/");
+    } catch (error) {
+      alert("Login error: Invalid login");
+      console.log(error);
+      setLogin(true)
+    }
+  };
+
   return (
-    <div className={`absolute  z-40 top-0 bg-white w-[90%] flex flex-col h-[90%]`}>
-      <div className="bg-white">
-        <section className="flex flex-col items-center mb-10 p-3">
-          <Image src={image} alt="logo" className="w-24 mb-3" />
-          <p className="text-xl text-center">
-            WELCOME <br />
-            back
-          </p>
-        </section>
-        <div>
-          <HiX
-            size={20}
-            className="fixed top-5 right-6 "
-            onClick={() => setLogin(false)}
+    <div className="flex items-center bg-white h-full min-h-screen flex-col">
+      <img
+        className="h-24 w-36 my-10"
+        src="/logo.png"
+        alt="Logo"
+      />
+      <div className="flex flex-col items-center w-full">
+        <h1 className="font-bold text-[#041e42] text-lg">
+          Login to your account
+        </h1>
+      </div>
+      <div className="my-20">
+        <div className="bg-gray-300 my-5 flex items-center gap-2 py-1 px-2 w-72 rounded-md">
+          <FaEnvelopeOpen className="text-gray-600" size={24} />
+          <input
+            className="flex-1 my-3"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your Email"
           />
         </div>
-        <form className=" flex flex-col justify-center items-center mb-10">
-          <input placeholder="Email" />
-
-          <input placeholder="Password" />
-
-          <button
-            type="submit"
-            className="border-red-400 border-solid border-[1px] text-red-400 px-3 py-1 rounded-md mt-1 hover:text-white hover:bg-red-400 transition ease-in-out duration-700  "
-          >
-            Sign up
-          </button>
-        </form>
-        <div>
-          <section className="flex items-center justify-center text-gray-700">
-            <div className="w-[30%] mr-1 h-[2px] bg-slate-500"></div>
-            <p>Continue with</p>
-            <div className="w-[30%] h-[2px] ml-1 bg-slate-500"></div>
-          </section>
-          <div className="w-full flex justify-around text-3xl mt-5">
-            <button className="hover:text-red-500 transition-all ease-in-out duration-700">
-              <FaGoogle />
-            </button>
-            <button className="hover:text-blue-500 transition-all ease-in-out duration-700">
-              <FaFacebook />
-            </button>
-            <button className="hover:text-slate-500 transition-all ease-in-out duration-700">
-              <FaApple />
-            </button>
-          </div>
+        <div className="bg-gray-300 flex items-center gap-2 py-1 px-2 w-72 rounded-md">
+          <FaLock className="text-gray-600"  size={24} />
+          <input
+            type="password"
+            className="flex-1 my-3"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
         </div>
+        <div className="flex justify-between mt-2">
+          <span>Keep me logged in</span>
+          <span className="text-blue-400 font-bold">Forgot password</span>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        <button
+          onClick={handleLogin}
+          className="rounded-md bg-red-400 w-48 h-12 flex items-center justify-center"
+        >
+          {
+              login?<FaThumbsUp />:
+            <span className="text-white font-bold text-xl">Login</span>
+          }
+        </button>
+        <button onClick={() => router.push("/register")}>
+          Don't have an account? Register
+        </button>
       </div>
     </div>
   );
 }
-
-export default Login;
