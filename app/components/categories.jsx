@@ -1,4 +1,4 @@
-// SideBar.js
+"use client"
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
@@ -6,7 +6,6 @@ import { fetchCategories } from '../utils/fetchCategories';
 
 function category() {
   const [categories, setCategories] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getCategories() {
