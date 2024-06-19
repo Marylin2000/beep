@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import React,from "react";
+import React from "react";
 import { FaTag } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
 import AddToCart from "./addToCart";
+
 function ProductCard({ product }) {
- 
-const router = useRouter()
+  const router = useRouter();
 
   const handleImageClick = () => {
     router.push(`/pages/products/${product.id}`);
@@ -16,7 +16,7 @@ const router = useRouter()
   console.log(product);
 
   return (
-    <main className="overflow-hidden w-[40vw]  flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
+    <main className="overflow-hidden w-[40vw] flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
       <div onClick={handleImageClick}>
         <Image
           src={product.thumbnail}
