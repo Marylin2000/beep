@@ -35,9 +35,7 @@ export default function Login() {
       const response = await axios.post("http://192.168.43.167:8000/login", user);
       console.log(response);
       const token = response.data.token;
-      const userInfo = response.data.user; // Assume your API returns user info
       localStorage.setItem("authToken", token);
-      setUser(userInfo); // Set user info in context
       router.replace("/");
     } catch (error) {
       alert("Login error: Invalid login");
