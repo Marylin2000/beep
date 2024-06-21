@@ -13,8 +13,6 @@ function ProductCard({ product }) {
     router.push(`/pages/products/${product.id}`);
   };
 
-  console.log(product);
-
   return (
     <main className="overflow-hidden w-[40vw] flex flex-wrap cursor-pointer object-contain items-center justify-center sm:w-[20vw] bg-slate-100 gap-3 h-[fit-content] mx-2 my-1 px-3 rounded-lg py-3">
       <div onClick={handleImageClick}>

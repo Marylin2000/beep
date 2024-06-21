@@ -19,8 +19,6 @@ function Banner() {
     getCategories();
   }, []);
 
-  console.log(categories)
-
 
   return (
     <main className="lg:grid grid-cols-12 hidden  px-10 gap-5 py-5 w-full h-[100vh] bg-slate-200">

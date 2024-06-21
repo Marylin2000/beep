@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HiMenuAlt3, HiOutlineXCircle } from "react-icons/hi";
+import { HiMenuAlt3, HiOutlineUser, HiOutlineXCircle } from "react-icons/hi";
 import { FiShoppingCart } from "react-icons/fi";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch} from "react-icons/fa";
 import logo from "@/app/assets/images/logo.png";
-import Navbar from "./Navbar";
 import SideBar from "./categories";
 
 function Header() {
@@ -18,13 +17,13 @@ function Header() {
         className="text-slate-100"
         onClick={() => {
           setToggleSidebar(true);
+          console.log("im hit",toggleSideBar);
+
         }}
         size={20}
       />
       <div
-        className={`h-screen w-[47%] bg-slate-100 rounded-l-md absolute top-0 left-0 translate-x-[-100%] ${
-          toggleSideBar ? "transition ease-in-out duration-500 translate-x-0" : ""
-        }`}
+        className={`h-screen w-[47%] bg-slate-100 rounded-l-md absolute top-0 left-0 translate-x-[-100%]`}
       >
         <div className="flex space-around items-center">
           <HiOutlineXCircle
@@ -47,14 +46,21 @@ function Header() {
           <Image src={logo} alt="Logo" className="w-24 font-lg lg:w-48" />
         </Link>
       </header>
-      <div className="flex gap-2 items-center">
-        <Link href="/search">
-          <FaSearch size={20} className="text-white cursor-pointer" />
+
+        <Link href="/search" className="flex gap-4 rounded-[1px] bg-slate-200 w-[50vh] px-3 py-1 items-center">
+          <FaSearch size={20} className="text-slate-600  cursor-pointer" />
+          <p className="text-slate-400">search</p>
         </Link>
-      </div>
+    <div className=" hidden md:flex items-center gap-8 text-slate-200 ">
+
       <Link href="/cart" className="cursor-pointer text-slate-200">
         <FiShoppingCart size={25} />
       </Link>
+
+      <Link className="cursr-pointer" href="/profile">
+        <HiOutlineUser size={25} />
+      </Link>
+      </div>
     </div>
   );
 }

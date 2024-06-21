@@ -1,19 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "@/app/assets/images/logo.png";
 import Image from "next/image";
 import { FaChevronRight, FaShoppingBag, FaUser } from "react-icons/fa";
-import Signup from "../auth/Signup";
-import Login from "../auth/login";
 import { HiArrowLeft } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import Main from "../layouts/Main";
+import Link from "next/link";
+import { useUser } from "../context/UserContext";
 
 function Profile() {
   const [signup, setSignup] = useState(false);
   const [login, setLogin] = useState(false);
+  const { user } = useUser();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      setLogin(true);
+    }
+  }, [user]);
 
   return (
     <Main>
@@ -23,7 +30,7 @@ function Profile() {
 
       <div className="px-4 py-2 text-xs mb-24">
         <header className="flex justify-center h-fit py-2 sticky top-0">
-          <Image src={logo} alt="logo" width={250} height={250}/>
+          <Image src={logo} alt="logo" width={250} height={250} />
         </header>
 
         {/* User Properties */}
@@ -32,18 +39,26 @@ function Profile() {
             <FaUser />
           </div>
           <div className="flex flex-col justify-around h-10 ml-4">
-            <button
-              onClick={() => setLogin((prev) => !prev)}
-              className="shadow-md px-2 text-xs py-1 mb-1 text-red-400 border-red-400 border-[1px] border-solid rounded-md"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setSignup((prev) => !prev)}
-              className="shadow-md px-2 text-xs py-1 text-red-400 border-red-400 border-[1px] border-solid rounded-md"
-            >
-              Sign up
-            </button>
+            {!user ? (
+              <>
+                <Link
+                  href="/login"
+                  className="shadow-md px-2 text-xs py-1 mb-1 text-red-400 border-red-400 border-[1px] border-solid rounded-md"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="shadow-md px-2 text-xs py-1 mb-1 text-red-400 border-red-400 border-[1px] border-solid rounded-md"
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <div>
+                <h2 className="text-xl font-bold">Welcome, {user.name}!</h2>
+              </div>
+            )}
           </div>
         </section>
 
@@ -75,9 +90,6 @@ function Profile() {
             </ul>
           </div>
         </section>
-        
-        {signup && <Signup setSignup={setSignup} />}
-        {login && <Login setLogin={setLogin} />}
       </div>
     </Main>
   );
