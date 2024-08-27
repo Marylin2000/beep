@@ -1,22 +1,22 @@
-import { getFirestore, doc, setDoc, collection } from 'firebase/firestore'; // Ensure correct imports
-import { auth } from '../../firebase'; // Import Firebase auth
-import { db } from '../../firebase'; // Import your Firestore instance
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { auth } from '../../firebase';
+import { db } from '../../firebase';
 import { useContext } from 'react';
 import CartContext from '../context/CartContext';
 import { FiShoppingCart } from 'react-icons/fi';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 
 function AddToCart({ product }) {
   const { cart, addToCart } = useContext(CartContext);
 
   const handleAddToCart = async () => {
-    const user = auth.currentUser; // Get the current user
+    const user = auth.currentUser;
     if (!user) {
       toast.error("Please log in to add items to your cart.", {
         style: {
           background: '#ffa505',
           color: 'black',
-        },
+        }
       });
       return;
     }
@@ -30,32 +30,36 @@ function AddToCart({ product }) {
           color: 'black',
         },
       });
-    } else {
-      addToCart(product);
+      return;
+    } 
 
-      // Push cart data to Firebase
-      try {
-        const userCartRef = doc(db, 'carts', user.uid);
-        await setDoc(userCartRef, {
-          items: [...cart, product],
-          userId: user.uid,
-          email: user.email,
-        });
-        toast.success(`Added "${product.title}" to cart`, {
-          style: {
-            background: 'green',
-            color: '#fff',
-          },
-        });
-      } catch (error) {
-        console.error("Error adding document: ", error);
-        toast.error("Failed to update cart in Firebase", {
-          style: {
-            background: 'red',
-            color: '#fff',
-          },
-        });
-      }
+    addToCart(product);
+
+    // Ensure the updated cart is used after state update
+    const updatedCart = [...cart, product];
+
+    // Push cart data to Firebase
+    try {
+      const userCartRef = doc(db, 'carts', user.uid);
+      await setDoc(userCartRef, {
+        items: updatedCart,
+        userId: user.uid,
+        email: user.email,
+      });
+      toast.success(`Added "${product.title}" to cart`, {
+        style: {
+          background: 'green',
+          color: '#fff',
+        },
+      });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      toast.error("Failed to update cart in Firebase", {
+        style: {
+          background: 'red',
+          color: '#fff',
+        },
+      });
     }
   };
 
