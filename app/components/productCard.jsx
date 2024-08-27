@@ -37,7 +37,7 @@ function ProductCard({ product }) {
       
       <section className="w-[100%] flex justify-between">
         <Link
-          className="text-xs bg-red-400 flex items-center px-2 py-1 rounded-full text-white"
+          className="text-xs bg-red-400 w-fit h-fit flex items-center p-2 rounded-full text-white"
           href={`/order/${product.id}`}
         >
           Order

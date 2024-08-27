@@ -28,8 +28,11 @@ function AddToCart({ product }) {
   };
 
   return (
-    <button onClick={handleAddToCart} className="text-xs  rounded-full text-white">
+    <button onClick={handleAddToCart} className="text-xs  rounded-md lg:bg-blue-400 p-2 w-fit text-white flex gap-3 items-center justify-center">
       <FiShoppingCart size={25} className="text-slate-500" />
+      <p className='hidden lg:block'>
+        Add to cart
+      </p>
     </button>
   );
 }

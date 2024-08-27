@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaArrowLeft, FaHeart, FaMinus, FaPlus } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Main from "../layouts/Main";
+import AddToCart from "./addToCart";
 
 function ProductView({ product }) {
   const [amount, setAmount] = useState(1);
@@ -131,12 +132,7 @@ function ProductView({ product }) {
                     </div>
                   </div>
                   <div className="flex justify-between items-center mt-4">
-                    <button
-                      onClick={handleAddToCart}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-                    >
-                      Add To Cart
-                    </button>
+                    <AddToCart product={product} />
                     <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">
                       Buy Now
                     </button>
