@@ -152,15 +152,9 @@ export default function Register() {
               className="rounded-md bg-red-400 w-48 h-12 flex items-center justify-center"
             >
               <FaGoogle size={25} color={"white"} />
-              <span className="text-white font-bold text-xl ml-2">Sign in with Google</span>
+              <span className="text-white font-bold text-xs ml-2">Sign in with Google</span>
             </button>
-            <button
-              onClick={handleFacebookSignIn}
-              className="rounded-md bg-blue-600 w-48 h-12 flex items-center justify-center"
-            >
-              <FaFacebook size={25} color={"white"} />
-              <span className="text-white font-bold text-xl ml-2">Sign in with Facebook</span>
-            </button>
+           
           </div>
         </div>
       </div>

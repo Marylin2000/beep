@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import CartContext from '../context/CartContext';
-import toast from 'react-hot-toast';
-import { FiShoppingCart } from 'react-icons/fi';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection } from 'firebase/firestore'; // Ensure correct imports
 import { auth } from '../../firebase'; // Import Firebase auth
-import { db } from '../../firebase'; // Import your Firebase setup (db is Firestore instance)
+import { db } from '../../firebase'; // Import your Firestore instance
+import { useContext } from 'react';
+import CartContext from '../context/CartContext';
+import { FiShoppingCart } from 'react-icons/fi';
+import toast from 'react-hot-toast'
 
 function AddToCart({ product }) {
   const { cart, addToCart } = useContext(CartContext);
