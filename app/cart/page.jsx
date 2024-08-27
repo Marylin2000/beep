@@ -5,19 +5,32 @@ import CartContext from "../context/CartContext";
 import Image from "next/image";
 import { FaTrashAlt } from "react-icons/fa";
 import Link from "next/link";
+import { auth, db } from '../../firebase'; // Ensure correct imports
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 
 const CartComponent = () => {
-  const context = useContext(CartContext);
+  const { cart, removeFromCart } = useContext(CartContext); // No need for setCart
+  const [quantities, setQuantities] = useState([]);
   const router = useRouter();
 
-
-  const { cart, removeFromCart } = context;
-  const [quantities, setQuantities] = useState([]);
-
+  // Fetch cart from Firebase
   useEffect(() => {
-    const initialQuantities = cart.map(() => 1);
-    setQuantities(initialQuantities);
-  }, [cart]);
+    const fetchCart = async () => {
+      
+      const user = auth.currentUser;
+      if (user) {
+        const userCartRef = doc(db, 'carts', user.uid);
+        const docSnap = await getDoc(userCartRef);
+        if (docSnap.exists()) {
+          const cartItems = docSnap.data().items || [];
+          setQuantities(cartItems.map(() => 1));
+          console.log(cartItems)
+        }
+      }
+    };
+
+    fetchCart();
+  }, []); 
 
   const handleQuantityChange = (index, newQuantity) => {
     const updatedQuantities = [...quantities];
