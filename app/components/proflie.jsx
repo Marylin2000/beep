@@ -2,6 +2,7 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext"; // Import useAuth hook
 import Link from "next/link";
+import Image from "next/image";
 
 const ProfileComponent = () => {
   const { user } = useAuth(); // Use the useAuth hook
@@ -10,7 +11,7 @@ const ProfileComponent = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       {user ? (
         <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-          <img
+          <Image
             src={user.photoURL || "/default-profile.png"} // Default image if profile URL is not available
             alt="Profile"
             className="w-24 h-24 rounded-full mb-4"

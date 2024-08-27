@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 import logo from "@/app/assets/images/logo.png";
 import { TypeAnimation } from "react-type-animation";
 import { FaEnvelopeOpen, FaLock, FaUserAlt, FaFacebook, FaGoogle } from "react-icons/fa";
-import { auth, googleProvider, facebookProvider } from "../../firebase"; // Ensure correct import
+import { auth, googleProvider} from "../../firebase"; // Ensure correct import
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -56,18 +56,8 @@ export default function Register() {
     }
   };
 
-  const handleFacebookSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, facebookProvider);
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log("Facebook Sign-In successful:", user);
-    } catch (error) {
-      console.error("Facebook Sign-In Error:", error);
-      alert("Facebook Sign-In failed. Please try again.");
-    }
-  };
+
+
 
   return (
     <main className="block lg:grid grid-cols-2">

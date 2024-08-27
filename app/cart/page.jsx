@@ -10,9 +10,6 @@ const CartComponent = () => {
   const context = useContext(CartContext);
   const router = useRouter();
 
-  if (!context) {
-    return <div>Error: CartContext is not provided</div>;
-  }
 
   const { cart, removeFromCart } = context;
   const [quantities, setQuantities] = useState([]);
