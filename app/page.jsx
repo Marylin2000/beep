@@ -5,6 +5,7 @@ import { fetchProducts } from "@/app/utils/fetchProducts";
 import Loader from "./components/Loader";
 import Banner from "./components/banner";
 import Main from "./layouts/Main";
+import Footer from "./components/Footer";
 
 function MainPage() {
   const [allProducts, setAllProducts] = useState([]);
@@ -25,7 +26,7 @@ function MainPage() {
   };
 
   const Products = ({ products }) => (
-    <div className="flex flex-wrap sm:grid sm:grid-cols-4 sm:gap-5 justify-center">
+    <div className="flex flex-wrap items-center  sm:grid sm:grid-cols-4 sm:gap-5 justify-center">
       {products.map((product, index) => (
         <div key={index}>
           <ProductCard product={product} />
@@ -36,9 +37,9 @@ function MainPage() {
 
   return (
     <Main>
-      <main className="w-[100vw] h-[100vh]">
+      <main className="w-[100vw]  h-[100vh] ">
         <Banner />
-        <div className="font-poppins">
+        <div className="font-poppins mb-10">
           {isLoading ? (
             <Loader />
           )
@@ -46,6 +47,7 @@ function MainPage() {
             <Products products={allProducts} />
           )}
         </div>
+        <Footer />
       </main>
     </Main>
   );

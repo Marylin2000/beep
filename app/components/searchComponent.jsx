@@ -38,13 +38,16 @@ const SearchPage = () => {
 
   return (
     <div className="p-4">
+      <div className="border-2 w-full border-slate-400 h-fit bg-red-200 p-1 mb-10  flex item-center justify-center rounded-full" >
+
       <input
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search for products..."
-        className="w-full p-2 border border-gray-400 rounded-md mb-4"
-      />
+        className="w-full p-2 focus:border-none rounded-full"
+        />
+        </div>
       {loading ? (
         <div className="text-center">Loading...</div>
       ) : (

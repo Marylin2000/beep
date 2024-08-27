@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HiMenuAlt3, HiOutlineUser, HiOutlineXCircle } from "react-icons/hi";
@@ -7,9 +7,12 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FaSearch} from "react-icons/fa";
 import logo from "@/app/assets/images/logo.png";
 import SideBar from "./categories";
+import CartContext from "../context/CartContext";
 
 function Header() {
-  const [toggleSideBar, setToggleSidebar] = useState(false);
+  
+  const context = useContext(CartContext);
+  const {cart, removeCart} = context
 
   const SideNav = () => (
     <section className="sm:hidden">
@@ -39,7 +42,7 @@ function Header() {
   );
 
   return (
-    <div className="pl-3 bg-black pr-10 flex items-center justify-between sticky top-0">
+    <div className="pl-3 bg-black pr-10 flex items-center  justify-between sticky top-0">
       <header className="py-1 flex h-20 z-10 items-center">
         <SideNav />
         <Link href={"/"}>
@@ -47,13 +50,19 @@ function Header() {
         </Link>
       </header>
 
-        <Link href="/search" className="flex gap-4 rounded-[1px] bg-slate-200 w-[50vh] px-3 py-1 items-center">
+        <Link href="/search" className="flex gap-4 bg-slate-200  rounded-full w-[50vh] px-3 py-1 items-center">
           <FaSearch size={20} className="text-slate-600  cursor-pointer" />
           <p className="text-slate-400">search</p>
         </Link>
     <div className=" hidden md:flex items-center gap-8 text-slate-200 ">
 
-      <Link href="/cart" className="cursor-pointer text-slate-200">
+      <Link href="/cart" className="cursor-pointer relative text-slate-200">
+
+        <p className={`text-xs top-[-2px] ${cart.length==0?"bg-red-400":"bg-green-300"} text-black p-[7px] flex items-center justify-center  rounded-full w-3 h-3 right-0 absolute`}>
+          {
+            cart.length
+          }
+        </p>
         <FiShoppingCart size={25} />
       </Link>
 

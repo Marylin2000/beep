@@ -48,7 +48,7 @@ function Profile() {
                   Login
                 </Link>
                 <Link
-                  href="/signup"
+                  href="/register"
                   className="shadow-md px-2 text-xs py-1 mb-1 text-red-400 border-red-400 border-[1px] border-solid rounded-md"
                 >
                   Register

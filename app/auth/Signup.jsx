@@ -41,7 +41,7 @@ export default function Register() {
 
   return (
     <main className="block lg:grid grid-cols-2">
-      <section className={`background hidden lg:block bg-[url('../app/assets/images/foodpanda-food.gif')] w-full h-full`}>
+      <section className={`background hidden lg:block bg-[url('../app/assets/images/foodpanda-food.gif')] w-full h-full bg-no-repeat bg-cover`}>
         <div className="bg-black/70 flex items-center justify-center flex-col  backdrop-blur-[1.5px] h-full w-full">
           <div className="my-5"> 
 
@@ -76,7 +76,7 @@ export default function Register() {
 
       </section>
 
-    <div className="flex items-center bg-white h-full min-h-screen flex-col">
+    <div className="flex items-center lg:justify-center bg-white h-full min-h-screen flex-col">
       <Image
         src={logo}
         alt="Logo"
