@@ -37,7 +37,7 @@ const ProfileComponent = () => {
           <Link href="/login" className="px-4 py-2 bg-blue-500 text-white rounded-md mb-2">
             Login
           </Link>
-          <Link href="/signup" className="px-4 py-2 bg-green-500 text-white rounded-md">
+          <Link href="/register" className="px-4 py-2 bg-green-500 text-white rounded-md">
             Signup
           </Link>
         </div>
