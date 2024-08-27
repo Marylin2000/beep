@@ -23,4 +23,4 @@ const googleProvider = new GoogleAuthProvider();
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export { app, analytics, auth, googleProvider }; 
+export { app, analytics, auth, googleProvider,db }; 
