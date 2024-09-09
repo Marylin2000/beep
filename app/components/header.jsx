@@ -63,7 +63,7 @@ function Header() {
         </Link>
 
         {user ? (
-          <div className="flex items-center">
+          <Link href={"/profile"} className="flex items-center">
             <Image
               src={user.photoURL} // Default image if profile URL is not available
               alt="Profile"
@@ -72,7 +72,7 @@ function Header() {
               className="rounded-full"
             />
             <span className="text-slate-200 ml-2">{user.displayName || "User"}</span>
-          </div>
+          </Link>
         ) : (
           <Link className="cursor-pointer" href="/login">
             <HiOutlineUser size={25} />
