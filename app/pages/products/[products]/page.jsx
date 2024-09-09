@@ -1,24 +1,26 @@
-// pages/products/[id].js
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { FaArrowLeft, FaHeart, FaMinus,FaShoppingCart,FaUser, FaPlus } from "react-icons/fa";
+import { FaArrowLeft, FaHeart, FaMinus, FaShoppingCart, FaUser, FaPlus } from "react-icons/fa";
 import Main from "@/app/layouts/Main";
 import { fetchProductById } from "@/app/utils/fetchById";
 import Loader from "@/app/components/Loader";
 import AddToCart from "@/app/components/addToCart";
+import { useRouter } from "next/navigation";
 
-
-function ProductView({params}) {
+function ProductView({ params }) {
   const [product, setProduct] = useState(null);
   const [amount, setAmount] = useState(0);
-
-  
-  const id = params.products
+  const [mainImage, setMainImage] = useState(""); // State for main image
+  const navigation = useRouter()
+  const id = params.products;
   useEffect(() => {
     if (id) {
       fetchProductById(id)
-        .then((data) => setProduct(data))
+        .then((data) => {
+          setProduct(data);
+          setMainImage(data.thumbnail); // Set initial main image
+        })
         .catch((error) => console.error("Error fetching product data:", error));
     }
   }, [id]);
@@ -27,11 +29,13 @@ function ProductView({params}) {
     return <Loader />;
   }
 
+  const handleImageClick = (image) => {
+    setMainImage(image); // Update main image when an extra image is clicked
+  };
+
   const handleAddToCart = () => {
     console.log(`Added ${product.title} to cart with quantity ${amount}`);
   };
-
-  console.log(params);
 
   return (
     <Main>
@@ -39,7 +43,7 @@ function ProductView({params}) {
         {/* Header */}
         <header className="flex justify-between items-center mb-6">
           <div className="flex items-center">
-            <button onClick={() => router.back()} className="text-gray-600 mr-4">
+            <button onClick={() => navigation.back()} className="text-gray-600 mr-4">
               <FaArrowLeft size={20} />
             </button>
             <h1 className="text-xl font-bold">Logo</h1>
@@ -55,34 +59,7 @@ function ProductView({params}) {
           {/* Side Filters */}
           <aside className="hidden md:block w-1/4 p-4 bg-white rounded-lg shadow-md">
             <h2 className="text-lg font-bold mb-4">Filter</h2>
-            <div className="mb-4">
-              <h3 className="text-md font-semibold mb-2">Pick Color</h3>
-              <div className="flex space-x-2">
-                <div className="w-6 h-6 rounded-full bg-blue-500"></div>
-                <div className="w-6 h-6 rounded-full bg-red-500"></div>
-                <div className="w-6 h-6 rounded-full bg-yellow-500"></div>
-                <div className="w-6 h-6 rounded-full bg-green-500"></div>
-              </div>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-md font-semibold mb-2">Brand</h3>
-              <ul>
-                <li>Reymond</li>
-                <li>Blue World</li>
-                <li>Vanhuessen</li>
-                <li>Bimboos</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold mb-2">Price</h3>
-              <ul>
-                <li>50 - 100</li>
-                <li>100 - 150</li>
-                <li>150 - 200</li>
-                <li>200 - 250</li>
-                <li>250 - 300</li>
-              </ul>
-            </div>
+            {/* Filter content here */}
           </aside>
 
           {/* Product Details */}
@@ -90,8 +67,9 @@ function ProductView({params}) {
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex flex-col md:flex-row">
                 <div className="flex-1">
+                  {/* Main Image */}
                   <Image
-                    src={product.thumbnail}
+                    src={mainImage}
                     height={300}
                     width={300}
                     alt={product.title}
@@ -106,6 +84,7 @@ function ProductView({params}) {
                         width={50}
                         height={50}
                         className="object-cover mx-1 cursor-pointer"
+                        onClick={() => handleImageClick(image)} // Change main image on click
                       />
                     ))}
                   </div>
@@ -152,11 +131,9 @@ function ProductView({params}) {
                     </div>
                   </div>
                   <div className="flex justify-between items-center mt-4">
-                    <div className="bg-blue-400 p-2 w-fit flex gap-3">
-
-                  <AddToCart product={product} />
-                  
-                    </div>
+                
+                      <AddToCart product={product} />
+              
                     <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">
                       Buy Now
                     </button>
@@ -167,34 +144,8 @@ function ProductView({params}) {
               {/* Reviews Section */}
               <div className="mt-10">
                 <h2 className="text-xl font-bold mb-4">All Reviews (120)</h2>
-                <div className="mb-4">
-                  <p className="font-semibold">Yeasin Arafat</p>
-                  <p className="text-gray-600">I finally got my dream T-shirt</p>
-                  <p className="text-yellow-500">5 / 5</p>
-                  <p className="text-gray-500 text-sm">Jun 5, 2022</p>
-                </div>
+                {/* Review content here */}
               </div>
-            </div>
-          </div>
-
-          {/* Product List */}
-          <div className="hidden md:block w-1/4 p-4 bg-white rounded-lg shadow-md">
-            <h2 className="text-lg font-bold mb-4">Product List (56)</h2>
-            <div className="flex flex-col space-y-4">
-              <div className="flex items-center">
-                <Image
-                  src={product.thumbnail}
-                  width={60}
-                  height={60}
-                  alt="Product Thumbnail"
-                  className="rounded-lg"
-                />
-                <div className="ml-4">
-                  <p className="font-semibold">Gold Standard Whey Protein</p>
-                  <p className="text-red-500">$2,365</p>
-                </div>
-              </div>
-              {/* Repeat similar blocks for other products */}
             </div>
           </div>
         </div>
@@ -204,24 +155,3 @@ function ProductView({params}) {
 }
 
 export default ProductView;
-
-
-
-// import Image from "next/image";
-// import React, { useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Main from "../layouts/Main";
-
-// function ProductView({ product }) {
-//   const [amount, setAmount] = useState(1);
-//   const router = useRouter();
-
-//   const handleAddToCart = () => {
-//     console.log(`Added ${product.title} to cart with quantity ${amount}`);
-//   };
-
-  
-// }
-
-// export default ProductView;
-

@@ -32,6 +32,7 @@ const ProfileComponent = () => {
           <section>
             {profileNav.map((item, index) => (
               <Link
+              key={index}
                 className="flex hover:bg-slate-200 justify-between items-center h-10 p-4"
                 href={item.link}
               >
